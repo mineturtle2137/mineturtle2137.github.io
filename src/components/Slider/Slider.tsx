@@ -46,7 +46,7 @@ export function Slider({ slides, autoplayInSeconds = AUTOPLAY_DURATION }: Props)
     };
 
     useEffect(() => {
-        // timeoutRef.current = setTimeout(handleNextSlide, autoplayInSeconds * 1000);
+        timeoutRef.current = setTimeout(handleNextSlide, autoplayInSeconds * 1000);
 
         return () => clearTimeoutRef();
     }, [slideIndex]);

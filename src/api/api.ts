@@ -17,7 +17,6 @@ class ApiService {
     public getProducts = async (): Promise<ApiItem[]> => {
         const response: ApiResponseType = await this.apiConnector.get('products');
         const responseData: ApiItem = response.data;
-        console.log(responseData);
 
         return responseData.data;
     };

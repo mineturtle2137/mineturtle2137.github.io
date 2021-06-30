@@ -35,7 +35,7 @@ function App() {
             }
         };
 
-        // fetchProducts();
+        fetchProducts();
     }, []);
 
     if (error) return <div>{error}</div>;
