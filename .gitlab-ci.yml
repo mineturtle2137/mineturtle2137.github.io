@@ -18,7 +18,6 @@ pages:
     - build
   script:
     - rm -rf public
-    - cp build/index.html
     - mv build public
   artifacts:
     paths:
