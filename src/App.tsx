@@ -1,5 +1,5 @@
 import styled, { ThemeProvider } from 'styled-components';
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import './App.css';
 import { Api } from 'api/api';
 import { SlideType } from 'utils/types';
@@ -15,7 +15,7 @@ const Container = styled.main`
     width: 100%;
 `;
 
-function App() {
+function App(): ReactElement {
     const storedProducts = () => getStoredProducts();
     const [products, setProducts] = useState<SlideType[]>(storedProducts);
     const [error, setError] = useState<string | undefined>();

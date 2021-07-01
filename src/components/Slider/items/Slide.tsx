@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getRandomArrayItem, getTitleAndSubtitle } from 'utils';
 import Description from './Description';
@@ -63,7 +63,7 @@ const Subtitle = styled(TitleText)`
     color: ${(p) => p.theme.colors.accent};
 `;
 
-const Slide = ({ title: titleProp, description, mainImageURL, images }: Props) => {
+const Slide = ({ title: titleProp, description, mainImageURL, images }: Props): ReactElement => {
     const [descExpanded, setDescExpanded] = useState(false);
     const [popoverImage, setPopoverImage] = useState<string>('');
     const { title, subtitle } = getTitleAndSubtitle(titleProp);
@@ -73,7 +73,7 @@ const Slide = ({ title: titleProp, description, mainImageURL, images }: Props) =
             const img = getRandomArrayItem(images, mainImageURL);
             setPopoverImage(img);
         }
-    }, []);
+    }, [images, mainImageURL, popoverImage]);
 
     const handleExpand = () => {
         setDescExpanded((expanded) => !expanded);
