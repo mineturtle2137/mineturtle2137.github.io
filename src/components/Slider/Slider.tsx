@@ -1,5 +1,5 @@
 import ArrowButton from 'components/ArrowButton';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { AUTOPLAY_DURATION, Direction } from 'utils';
 import { SlideType } from 'utils/types';
@@ -45,31 +45,33 @@ export function Slider({ slides, autoplayInSeconds = AUTOPLAY_DURATION }: Props)
         if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
 
-    useEffect(() => {
-        timeoutRef.current = setTimeout(handleNextSlide, autoplayInSeconds * 1000);
+    const lastSlideIdx = slides.length - 1;
 
-        return () => clearTimeoutRef();
-    }, [slideIndex]);
-
-    const handleNextSlide = () => {
+    const handleNextSlide = useCallback(() => {
         clearTimeoutRef();
 
         setSlideIndex((idx) => {
-            if (idx === slides.length - 1) {
+            if (idx === lastSlideIdx) {
                 return 0;
             }
 
             return idx + 1;
         });
-    };
+    }, [lastSlideIdx]);
 
-    const handlePrevSlide = () => {
+    const handlePrevSlide = useCallback(() => {
         clearTimeoutRef();
 
         setSlideIndex((idx) => {
-            return idx === 0 ? slides.length - 1 : idx - 1;
+            return idx === 0 ? lastSlideIdx : idx - 1;
         });
-    };
+    }, [lastSlideIdx]);
+
+    useEffect(() => {
+        timeoutRef.current = setTimeout(handleNextSlide, autoplayInSeconds * 1000);
+
+        return () => clearTimeoutRef();
+    }, [slideIndex, autoplayInSeconds, handleNextSlide]);
 
     return (
         <Wrapper>

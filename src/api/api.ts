@@ -2,6 +2,8 @@ import axios from 'axios';
 import { ApiItem, ApiResponseType } from 'utils/types';
 
 class ApiService {
+    private source = axios.CancelToken.source();
+
     private apiConnector = axios.create({
         baseURL: process.env.REACT_APP_API_URL,
         headers: {
@@ -11,6 +13,7 @@ class ApiService {
         params: {
             api_token: process.env.REACT_APP_API_KEY,
             limit: 20,
+            cancelToken: this.source.token,
         },
     });
 
@@ -19,6 +22,10 @@ class ApiService {
         const responseData: ApiItem = response.data;
 
         return responseData.data;
+    };
+
+    public cancelRequest = () => {
+        if (this.source) this.source.cancel();
     };
 }
 
