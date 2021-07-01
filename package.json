@@ -1,6 +1,7 @@
 {
     "name": "slider",
     "version": "0.1.0",
+    "homepage": "https://martagor.gitlab.io/slider/",
     "private": true,
     "dependencies": {
         "@testing-library/dom": "^8.0.0",
