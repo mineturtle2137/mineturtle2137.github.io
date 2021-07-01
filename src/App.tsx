@@ -36,6 +36,8 @@ function App() {
         };
 
         fetchProducts();
+
+        return () => Api.cancelRequest();
     }, []);
 
     if (error) return <div>{error}</div>;
