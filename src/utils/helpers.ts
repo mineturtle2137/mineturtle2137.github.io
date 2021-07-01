@@ -25,7 +25,7 @@ export const getRandomArrayItem = <T>(array: T[], blacklistItem?: T): T => {
 };
 
 export const getEllipsis = (text: string): string => {
-    if (text.length > ELIPSIS_LENGHT) return text;
+    if (text.length <= ELIPSIS_LENGHT) return text;
     const txt = text.substring(0, ELIPSIS_LENGHT);
     const substring = txt[txt.length - 1].match(/\W/) ? txt.slice(0, -1) : txt;
     return `${substring}...`;
