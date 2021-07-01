@@ -56,7 +56,7 @@ export default function Description({ isExpanded, description, onExpandToggle, p
                     {text}
                 </Text>
             </TextWrapper>
-            <ExpandButton title={isExpanded ? 'Expand' : 'Collapse'} onClick={onExpandToggle}>
+            <ExpandButton title={!isExpanded ? 'Expand' : 'Collapse'} onClick={onExpandToggle}>
                 {!isExpanded ? (
                     <FaChevronDown color={theme.colors.accent} />
                 ) : (
