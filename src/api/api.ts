@@ -5,13 +5,13 @@ class ApiService {
     private source = axios.CancelToken.source();
 
     private apiConnector = axios.create({
-        baseURL: process.env.REACT_APP_API_URL,
+        baseURL: `${process.env.REACT_APP_API_URL}`,
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
         },
         params: {
-            api_token: `{${process.env.REACT_APP_PROXY_URL}${process.env.REACT_APP_API_URL}`,
+            api_token: process.env.REACT_APP_API_KEY,
             limit: 20,
             cancelToken: this.source.token,
         },
