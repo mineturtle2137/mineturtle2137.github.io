@@ -11,7 +11,7 @@ class ApiService {
             Accept: 'application/json',
         },
         params: {
-            api_token: process.env.REACT_APP_API_KEY,
+            api_token: `{${process.env.REACT_APP_PROXY_URL}${process.env.REACT_APP_API_URL}`,
             limit: 20,
             cancelToken: this.source.token,
         },
