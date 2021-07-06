@@ -10,6 +10,7 @@ env:
   REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
   REACT_APP_PROXY_URL: ${{ secrets.REACT_APP_PROXY_URL }}
       
+jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
